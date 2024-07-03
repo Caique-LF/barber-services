@@ -27,4 +27,23 @@ export class QueuecustumerService {
 			}
 		})
 	}
+
+	async atendCustumer(custumerId: number) {
+		await this.prisma.queueCustumer.update({
+			where: {
+				id: custumerId
+			},
+			data: {
+				isAwaiting: false
+			}
+		})
+	}
+
+	async findCustumer(custumerId: number) {
+		return await this.prisma.queueCustumer.findFirst({
+			where: {
+				id: custumerId
+			}
+		})
+	}
 }
