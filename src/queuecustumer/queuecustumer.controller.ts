@@ -7,11 +7,13 @@ import {
 	Param,
 	Patch,
 	Post,
-	Res
+	Res,
+	UseGuards
 } from '@nestjs/common'
 import { QueuecustumerService } from './queuecustumer.service'
 import CreateQueuecustumerDto from './dtos/create-queuecustumer'
 import { Response } from 'express'
+import { JwtAuthGuard } from 'src/auth/guards/jwt-guard'
 
 @Controller('queuecustumer')
 export class QueuecustumerController {
@@ -39,6 +41,7 @@ export class QueuecustumerController {
 		return res.status(HttpStatus.CREATED).json(custumer)
 	}
 
+	@UseGuards(JwtAuthGuard)
 	@Patch(':id')
 	async atendCustumer(@Param('id') id: string, @Res() res: Response) {
 		const custumer = await this.queuecustumerService.findCustumer(+id)
@@ -52,6 +55,7 @@ export class QueuecustumerController {
 		return res.status(HttpStatus.NO_CONTENT).send()
 	}
 
+	@UseGuards(JwtAuthGuard)
 	@Delete(':id')
 	async deleteCustumer(@Param('id') id: string, @Res() res: Response) {
 		const custumer = await this.queuecustumerService.findCustumer(+id)
