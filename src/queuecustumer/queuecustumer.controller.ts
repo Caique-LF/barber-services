@@ -1,6 +1,7 @@
 import {
 	Body,
 	Controller,
+	Delete,
 	HttpStatus,
 	NotFoundException,
 	Param,
@@ -47,6 +48,19 @@ export class QueuecustumerController {
 		}
 
 		await this.queuecustumerService.atendCustumer(custumer.id)
+
+		return res.status(HttpStatus.NO_CONTENT).send()
+	}
+
+	@Delete(':id')
+	async deleteCustumer(@Param('id') id: string, @Res() res: Response) {
+		const custumer = await this.queuecustumerService.findCustumer(+id)
+
+		if (!custumer) {
+			throw new NotFoundException('O cliente não existe')
+		}
+
+		await this.queuecustumerService.deleteCustumer(custumer.id)
 
 		return res.status(HttpStatus.NO_CONTENT).send()
 	}
