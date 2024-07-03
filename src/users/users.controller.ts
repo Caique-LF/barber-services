@@ -23,8 +23,7 @@ export class UsersController {
 		}
 
 		const user = await this.usersService.createUser(data)
-		const { password: _, ...userReturn } = user
 
-		return res.status(HttpStatus.CREATED).json(userReturn)
+		return res.status(HttpStatus.CREATED).json(user)
 	}
 }
