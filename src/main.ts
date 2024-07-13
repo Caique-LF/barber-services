@@ -9,6 +9,6 @@ async function bootstrap() {
 	console.log('JWT_SECRET:', process.env.JWT_SECRET)
 	const app = await NestFactory.create(AppModule)
 	app.useGlobalPipes(new ValidationPipe())
-	await app.listen(3000)
+	await app.listen(process.env.PORT)
 }
 bootstrap()
