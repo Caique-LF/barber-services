@@ -11,7 +11,9 @@ import { Request, Response } from 'express'
 import LocalAuthGuard from './guards/local-guard'
 import { AuthService } from './auth.service'
 import { JwtAuthGuard } from './guards/jwt-guard'
+import { ApiTags } from '@nestjs/swagger'
 
+@ApiTags('auth')
 @Controller()
 export class AuthController {
 	constructor(private readonly authService: AuthService) {}

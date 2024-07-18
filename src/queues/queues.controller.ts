@@ -15,7 +15,9 @@ import CreateQueueDto from './dtos/create-queue'
 import { Response } from 'express'
 import { ExpertsService } from 'src/experts/experts.service'
 import { JwtAuthGuard } from 'src/auth/guards/jwt-guard'
+import { ApiTags } from '@nestjs/swagger'
 
+@ApiTags('queues')
 @Controller('queues')
 export class QueuesController {
 	constructor(

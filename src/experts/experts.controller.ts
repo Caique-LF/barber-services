@@ -16,7 +16,9 @@ import CreateExpertsDto from './dtos/create-experts'
 import { Response } from 'express'
 import updateExpertsDto from './dtos/update-experts'
 import { JwtAuthGuard } from 'src/auth/guards/jwt-guard'
+import { ApiTags } from '@nestjs/swagger'
 
+@ApiTags('experts')
 @Controller('experts')
 export class ExpertsController {
 	constructor(private readonly expertsService: ExpertsService) {}

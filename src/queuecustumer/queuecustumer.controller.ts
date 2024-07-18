@@ -14,7 +14,9 @@ import { QueuecustumerService } from './queuecustumer.service'
 import CreateQueuecustumerDto from './dtos/create-queuecustumer'
 import { Response } from 'express'
 import { JwtAuthGuard } from 'src/auth/guards/jwt-guard'
+import { ApiTags } from '@nestjs/swagger'
 
+@ApiTags('queuecustumer')
 @Controller('queuecustumer')
 export class QueuecustumerController {
 	constructor(private readonly queuecustumerService: QueuecustumerService) {}
